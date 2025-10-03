@@ -463,6 +463,10 @@ public class HybridCacheService
 
 ### 1. Стратегии именования ключей
 
+- Используйте префиксы (app_entity_id) для группировки.
+- Избегайте чрезмерно длинных ключей.
+- Добавляйте версионность схемы (schema_v2_product_42) при изменении формата данных.
+
 ```csharp
 public static class CacheKeys
 {
