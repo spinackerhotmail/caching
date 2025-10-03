@@ -298,7 +298,7 @@ public class VersionedCacheService
 }
 ```
 
-### 2. Проблема: Race Conditions при обновлении кеша
+### 2. Проблема: Состояние гонки (Race Conditions) при обновлении кеша
 
 **Решение: Optimistic locking**
 
@@ -664,9 +664,9 @@ public class CacheMetrics
 }
 ```
 
-### 2. Проблема: Thundering Herd при истечении популярных ключей
+### 2. Проблема: Thundering Herd - большое количество процессов одновременно пытаются выполнить обновшление кеша при истечении популярных ключей
 
-**Решение: Probabilistic Early Expiration**
+**Решение: Probabilistic Early Expiration** - техника кэширования, при которой запись в кэше обновляется не строго по истечении срока годности, а с некоторой вероятностью, которая увеличивается ближе к этому сроку
 
 ```csharp
 public class ProbabilisticCacheService
@@ -760,7 +760,7 @@ public class CachedItem<T>
 - Полный отказ приложения при недоступности кеша
 - Неконтролируемые тайм-ауты
 
-**Решение: Circuit Breaker Pattern**
+**Решение: Circuit Breaker Pattern** - временно отключаем неисправный кеш при обнаружении ошибок или задержек в его работе
 
 ```csharp
 public class ResilientCacheService
